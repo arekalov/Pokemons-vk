@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Pokemons-vk"
 include(":app")
+include(":data")
