@@ -2,31 +2,15 @@ package com.arekalov.data.api
 
 import com.arekalov.data.model.Pokemon
 import com.arekalov.data.model.Result
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 
-class PokemonRemoteDataSource(val pokemonApi: PokemonApi) {
-    suspend fun getPokemonList(skip: Int, offset: Int) {
-        pokemonApi.getPokemonList(skip, offset)
+class PokemonRemoteDataSource(private val pokemonApi: PokemonApi) {
+    suspend fun getPokemonList(limit: Int, offset: Int): List<Result> {
+        return pokemonApi.getPokemonList(limit, offset).results
     }
 
-    suspend fun getPokemon(id: Int) {
-        pokemonApi.getPokemon(id)
+    suspend fun getPokemon(name: String): Pokemon {
+        return pokemonApi.getPokemon(name)
     }
 }
 
-interface PokemonApi {
-    @GET("pokemon")
-    suspend fun getPokemonList(
-        @Query("skip") skip: Int,
-        @Query("offset") offset: Int
-    ): Response<List<Result>>
-
-    @GET("pokemon/{id}")
-    suspend fun getPokemon(
-        @Path("id") id: Int
-    ): Response<Pokemon>
-}

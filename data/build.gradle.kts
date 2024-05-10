@@ -9,5 +9,11 @@ java {
 }
 
 dependencies {
+//    retrofit
+    implementation(libs.converter.gson)
     implementation(libs.retrofit)
+
+//    coroutines
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    implementation(libs.kotlinx.coroutines.android)
 }
