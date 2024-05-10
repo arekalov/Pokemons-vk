@@ -1,6 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+}
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        val nav_version = "2.7.7"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
 }
 
 android {
@@ -26,6 +37,7 @@ android {
             )
         }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,6 +48,22 @@ android {
 }
 
 dependencies {
+//    retrofit
+    implementation(libs.retrofit)
+
+//    dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger)
+
+//    glide
+    implementation(libs.glide)
+
+//    coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
