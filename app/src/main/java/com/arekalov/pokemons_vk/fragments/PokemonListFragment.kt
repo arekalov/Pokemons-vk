@@ -17,6 +17,7 @@ import com.arekalov.data.model.Pokemon
 import com.arekalov.pokemons_vk.MainActivity
 import com.arekalov.pokemons_vk.R
 import com.arekalov.pokemons_vk.adapters.PokemonListAdapter
+import com.arekalov.pokemons_vk.adapters.PokemonLoadsAdapter
 import com.arekalov.pokemons_vk.databinding.FragmentPokemonListBinding
 import com.arekalov.pokemons_vk.viewmodels.PokemonListViewModel
 import com.arekalov.pokemons_vk.viewmodels.PokemonListViewModelFactory
@@ -29,6 +30,7 @@ class PokemonListFragment : Fragment() {
         PokemonListViewModelFactory((activity as MainActivity).repository)
     }
     private lateinit var pokemonListAdapter: PokemonListAdapter
+    private lateinit var loadsAdapter: PokemonLoadsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,9 +61,10 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun setAdapter() {
+        loadsAdapter = PokemonLoadsAdapter()
         pokemonListAdapter = PokemonListAdapter()
         binding.rvPokemons.apply {
-            adapter = pokemonListAdapter
+            adapter = pokemonListAdapter.withLoadStateFooter(loadsAdapter)
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         }
     }
