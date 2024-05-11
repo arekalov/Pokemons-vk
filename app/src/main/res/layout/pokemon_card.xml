@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_80sdp"
-    android:elevation="@dimen/_10ssp"
+    android:elevation="@dimen/_20ssp"
     android:paddingTop="@dimen/_4sdp"
     android:paddingBottom="@dimen/_4sdp"
     app:cardBackgroundColor="?android:colorBackground"
@@ -21,18 +21,21 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/error"
             android:src="@drawable/ic_placeholder"
-            app:layout_constraintStart_toEndOf="@id/tv_id"
-            app:layout_constraintEnd_toStartOf="@id/tv_name"/>
+            app:layout_constraintEnd_toStartOf="@id/tv_name"
+            app:layout_constraintStart_toEndOf="@id/tv_id" />
 
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:ellipsize="marquee"
             android:fontFamily="@font/pokemon_solid"
+            android:gravity="end"
+            android:maxLines="1"
             android:text="@string/example"
             android:textSize="@dimen/_20ssp"
-            android:layout_marginEnd="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -42,10 +45,10 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
             android:fontFamily="@font/pokemon_solid"
             android:text="@string/_1"
             android:textSize="@dimen/_18ssp"
-            android:layout_marginStart="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

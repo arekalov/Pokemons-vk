@@ -1,6 +1,11 @@
 package com.arekalov.pokemons_vk.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +36,7 @@ class PokemonListFragment : Fragment() {
     }
     private lateinit var pokemonListAdapter: PokemonListAdapter
     private lateinit var loadsAdapter: PokemonLoadsAdapter
+    private var internetAvailable = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +48,39 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val looper = Handler(Looper.getMainLooper())
+
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        connectivityManager.registerDefaultNetworkCallback(object :
+            ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                internetAvailable = true
+                Log.e("!", "!!!!!!!!!!connect")
+                looper.post {
+                    setUpAll()
+                }
+            }
+
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                internetAvailable = false
+                Log.e("!", "!!!!!!!!!!lost")
+                looper.post {
+                    changeInternetErrorVisibility(true)
+                }
+            }
+
+        })
+        if (connectivityManager.activeNetwork == null) {
+            internetAvailable = false
+            changeInternetErrorVisibility(true)
+        }
+    }
+
+    private fun setUpAll() {
+        changeInternetErrorVisibility(false)
         changeProgressBarVisibility(true)
         pokemonListViewModel.getPokemons()
         setAdapter()
@@ -72,14 +111,16 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun observePokemons() {
-      viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             try {
-                pokemonListViewModel.getPokemons()?.observe(viewLifecycleOwner) {
-                    pokemonListAdapter.submitData(lifecycle, it)
-                }
-                pokemonListAdapter.addLoadStateListener {
-                    if (it.refresh is LoadState.NotLoading && pokemonListAdapter.itemCount > 0) {
-                        changeProgressBarVisibility(false)
+                if (internetAvailable) {
+                    pokemonListViewModel.getPokemons()?.observe(viewLifecycleOwner) {
+                        pokemonListAdapter.submitData(lifecycle, it)
+                    }
+                    pokemonListAdapter.addLoadStateListener {
+                        if (it.refresh is LoadState.NotLoading && pokemonListAdapter.itemCount > 0) {
+                            changeProgressBarVisibility(false)
+                        }
                     }
                 }
             } catch (ex: Throwable) {
@@ -91,5 +132,17 @@ class PokemonListFragment : Fragment() {
     private fun changeProgressBarVisibility(isVisible: Boolean) {
         if (isVisible) binding.progressBar.visibility = View.VISIBLE
         else binding.progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun changeInternetErrorVisibility(isVisible: Boolean) {
+        if (isVisible) {
+            binding.rvPokemons.visibility = View.INVISIBLE
+            binding.tcNoInternet.visibility = View.VISIBLE
+            binding.ivNoInternet.visibility = View.VISIBLE
+        } else {
+            binding.rvPokemons.visibility = View.VISIBLE
+            binding.tcNoInternet.visibility = View.INVISIBLE
+            binding.ivNoInternet.visibility = View.INVISIBLE
+        }
     }
 }
