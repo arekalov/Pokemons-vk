@@ -26,13 +26,13 @@ class PokemonDetailFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpPokemon()
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+
     private fun setUpPokemon() {
         val pokemon = requireArguments().get("pokemon") as Pokemon
         binding.tvName.text = pokemon.name
