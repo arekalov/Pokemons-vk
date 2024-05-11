@@ -2,17 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
-buildscript {
-    repositories {
-        google()
-    }
-    dependencies {
-        val nav_version = "2.7.7"
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
-    }
-}
+
 
 android {
     namespace = "com.arekalov.pokemons_vk"
@@ -57,7 +50,7 @@ dependencies {
 
 //    dagger
     implementation(libs.dagger)
-    kapt(libs.dagger)
+    kapt(libs.dagger.compiler)
 
 //    glide
     implementation(libs.glide)

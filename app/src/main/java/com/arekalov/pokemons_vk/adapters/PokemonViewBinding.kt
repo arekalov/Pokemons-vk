@@ -13,8 +13,9 @@ class PokemonViewBinding(
         binding.apply {
             if (status is Status.OK<*>) {
                 binding.tvName.text = (status.data as Pokemon).name
+                binding.tvId.text = (status.data as Pokemon).id.toString()
                 Glide.with(itemView)
-                    .load((status as Pokemon).sprites.front_default)
+                    .load(((status as Status.OK<*>).data as Pokemon).sprites.front_default)
                     .into(binding.ivImage)
             } else {
                 binding.tvName.text = "Loading error!"

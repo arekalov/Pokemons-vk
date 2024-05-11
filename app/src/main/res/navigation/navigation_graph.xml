@@ -9,10 +9,22 @@
         android:id="@+id/pokemonListFragment"
         android:name="com.arekalov.pokemons_vk.fragments.PokemonListFragment"
         android:label="fragment_pokemon_list"
-        tools:layout="@layout/fragment_pokemon_list" />
+        tools:layout="@layout/fragment_pokemon_list" >
+        <action
+            android:id="@+id/action_pokemonListFragment_to_pokemonDetatilFragment"
+            app:destination="@id/pokemonDetatilFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/pokemonDetatilFragment"
         android:name="com.arekalov.pokemons_vk.fragments.PokemonDetailFragment"
         android:label="fragment_pokemon_detatil"
-        tools:layout="@layout/fragment_pokemon_detail" />
+        tools:layout="@layout/fragment_pokemon_detail" >
+        <argument
+            android:name="pokemon"
+            app:argType="com.arekalov.data.model.Pokemon" />
+    </fragment>
 </navigation>

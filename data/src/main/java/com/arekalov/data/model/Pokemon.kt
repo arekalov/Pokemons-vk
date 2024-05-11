@@ -1,5 +1,7 @@
 package com.arekalov.data.model
 
+import java.io.Serializable
+
 data class Pokemon(
     val name: String,
     val id: Int,
@@ -9,4 +11,4 @@ data class Pokemon(
     val weight: Int,
     val order: Int,
     val sprites: Sprites,
-)
+) : Serializable

@@ -48,7 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/haracteristics"
         android:textSize="@dimen/_16ssp"
         android:fontFamily="@font/pokemon_solid"
@@ -59,7 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintGuide_percent="0.5"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:fontFamily="@font/pokemon_hollow"/>
     
     <TextView
         android:id="@+id/tv_id"
@@ -72,7 +72,9 @@
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/tv_characteristics"
-        android:textSize="@dimen/_14ssp"/>
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pokemon_hollow"/>
 
 
     <TextView
@@ -86,7 +88,9 @@
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/tv_id"
-        android:textSize="@dimen/_14ssp"/>
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pokemon_hollow"/>
 
     <TextView
         android:id="@+id/tv_is_default"
@@ -99,10 +103,12 @@
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/tv_base_experience"
-        android:textSize="@dimen/_14ssp"/>
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pokemon_hollow"/>
 
     <TextView
-        android:id="@+id/weight"
+        android:id="@+id/tv_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/weight"
@@ -111,10 +117,12 @@
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_characteristics"
-        android:textSize="@dimen/_14ssp"/>
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pokemon_hollow"/>
 
     <TextView
-        android:id="@+id/height"
+        android:id="@+id/tv_height"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/height"
@@ -122,11 +130,13 @@
         android:layout_marginStart="@dimen/_8sdp"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weight"
-        android:textSize="@dimen/_14ssp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_weight"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pokemon_hollow"/>
 
     <TextView
-        android:id="@+id/order"
+        android:id="@+id/tv_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/order"
@@ -134,8 +144,9 @@
         android:layout_marginStart="@dimen/_8sdp"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/height"
+        app:layout_constraintTop_toBottomOf="@id/tv_height"
         android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
         android:fontFamily="@font/pokemon_hollow"/>
 
 

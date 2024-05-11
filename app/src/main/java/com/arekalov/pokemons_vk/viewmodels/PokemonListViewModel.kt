@@ -17,14 +17,14 @@ class PokemonListViewModel(private val repository: PokemonRepository) : ViewMode
     companion object {
         private const val ITEMS_PER_PAGE = 20
     }
-    var productsLiveData = MutableLiveData<PagingData<Status>>()
+    private var productsLiveData = MutableLiveData<PagingData<Status>>()
     private val response = Pager(
         config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
         pagingSourceFactory = { repository.pokemonPagingRemoteDataSource }
     ).liveData
         .cachedIn(viewModelScope)
 
-    fun getProducts(): LiveData<PagingData<Status>>? {
+    fun getPokemons(): LiveData<PagingData<Status>>? {
         try {
             productsLiveData.value = response.value
             return response

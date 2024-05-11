@@ -5,10 +5,11 @@
     <string name="networkError">Ошибка сети</string>
     <string name="example">Example</string>
     <string name="haracteristics">Сharacteristics</string>
-    <string name="id">ID: %d</string>
-    <string name="base_experience">Experience: %d</string>
+    <string name="id">ID: %s</string>
+    <string name="base_experience">Experience: %s</string>
     <string name="is_default">Default: %s</string>
-    <string name="weight">Weight: %d</string>
-    <string name="height">Height: %d</string>
-    <string name="order">Order: %d</string>
+    <string name="weight">Weight: %s</string>
+    <string name="height">Height: %s</string>
+    <string name="order">Order: %s</string>
+    <string name="_1">1</string>
 </resources>
