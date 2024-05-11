@@ -4,7 +4,7 @@ import com.arekalov.data.Status
 
 class PokemonRepository(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource,
-    private val pokemonPagingRemoteDataSource: PokemonPagingRemoteDataSource
+    val pokemonPagingRemoteDataSource: PokemonPagingRemoteDataSource
 ) {
     suspend fun getPokemonList(limit: Int, offset: Int): List<Status> {
         return pokemonRemoteDataSource.getPokemonList(limit, offset)

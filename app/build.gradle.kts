@@ -72,6 +72,10 @@ dependencies {
     implementation(libs.ssp.android)
     implementation(libs.sdp.android)
 
+//    paging
+    implementation(libs.androidx.paging.common.ktx)
+    implementation(libs.androidx.paging.runtime)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -80,4 +84,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(project(":data"))
 }
