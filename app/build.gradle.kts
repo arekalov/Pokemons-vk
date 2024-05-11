@@ -53,6 +53,7 @@ android {
 dependencies {
 //    retrofit
     implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
 //    dagger
     implementation(libs.dagger)

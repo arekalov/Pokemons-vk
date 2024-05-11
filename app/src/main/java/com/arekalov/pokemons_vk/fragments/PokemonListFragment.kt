@@ -16,7 +16,7 @@ import com.arekalov.pokemons_vk.viewmodels.PokemonListViewModelFactory
 class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
 //    private val productsViewModel: PokemonListViewModel by viewModels {
-//        PokemonListViewModelFactory(val repo)
+//       PokemonListViewModelFactory()
 //    }
 
     override fun onCreateView(
