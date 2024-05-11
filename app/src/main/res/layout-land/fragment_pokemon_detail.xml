@@ -16,20 +16,20 @@
         android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_front"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_8sdp"
-        android:src="@drawable/ic_placeholder"
-        android:scaleType="centerCrop"
         android:contentDescription="@string/error"
-        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/iv_back"
         app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        app:layout_constraintBottom_toTopOf="@id/iv_back"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <ImageView
         android:id="@+id/iv_back"
@@ -48,112 +48,120 @@
         android:id="@+id/tv_characteristics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
         android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/pokemon_solid"
         android:text="@string/haracteristics"
         android:textSize="@dimen/_16ssp"
-        android:fontFamily="@font/pokemon_solid"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.5"
+        android:fontFamily="@font/pokemon_hollow"
         android:orientation="vertical"
-        android:fontFamily="@font/pokemon_hollow"/>
-    
+        app:layout_constraintGuide_percent="0.5" />
+
     <TextView
         android:id="@+id/tv_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/id"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_order"
-        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/id"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/gl_three"
+        app:layout_constraintTop_toBottomOf="@id/tv_characteristics" />
 
 
     <TextView
         android:id="@+id/tv_base_experience"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/base_experience"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@id/tv_id"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/base_experience"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gl_three"
+        app:layout_constraintTop_toBottomOf="@id/tv_id" />
 
     <TextView
         android:id="@+id/tv_is_default"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/is_default"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_base_experience"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/is_default"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/gl_three"
+        app:layout_constraintTop_toBottomOf="@id/tv_base_experience" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
     <TextView
         android:id="@+id/tv_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/weight"
-        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_characteristics"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/weight"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
+        app:layout_constraintEnd_toEndOf="@id/gl_three"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_characteristics" />
 
     <TextView
         android:id="@+id/tv_height"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/height"
-        android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_weight"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/height"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
+        app:layout_constraintEnd_toEndOf="@id/gl_three"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_weight" />
 
     <TextView
         android:id="@+id/tv_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/order"
-        android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_height"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/pokemon_hollow"
+        android:text="@string/order"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:fontFamily="@font/pokemon_hollow"/>
-
-
-
+        app:layout_constraintEnd_toStartOf="@+id/gl_three"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_height" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.arekalov.pokemons_vk.fragments
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
@@ -19,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arekalov.data.Status
+import com.arekalov.data.api.PokemonRepository
 import com.arekalov.data.model.Pokemon
 import com.arekalov.pokemons_vk.MainActivity
 import com.arekalov.pokemons_vk.adapters.PokemonListAdapter
@@ -27,16 +29,24 @@ import com.arekalov.pokemons_vk.databinding.FragmentPokemonListBinding
 import com.arekalov.pokemons_vk.viewmodels.PokemonListViewModel
 import com.arekalov.pokemons_vk.viewmodels.PokemonListViewModelFactory
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
-    private val pokemonListViewModel: PokemonListViewModel by viewModels {
-        PokemonListViewModelFactory((activity as MainActivity).repository)
-    }
-    private lateinit var pokemonListAdapter: PokemonListAdapter
-    private lateinit var loadsAdapter: PokemonLoadsAdapter
+
+    @Inject
+    lateinit var pokemonListAdapter: PokemonListAdapter
+    @Inject
+    lateinit var loadsAdapter: PokemonLoadsAdapter
+    @Inject
+    lateinit var repository: PokemonRepository
     private var internetAvailable = true
+
+
+    private val pokemonListViewModel: PokemonListViewModel by viewModels {
+        PokemonListViewModelFactory(repository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +59,7 @@ class PokemonListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val looper = Handler(Looper.getMainLooper())
-
+        (activity as MainActivity).appComponent.inject(this)
         val connectivityManager =
             requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.registerDefaultNetworkCallback(object :
@@ -57,18 +67,24 @@ class PokemonListFragment : Fragment() {
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
                 internetAvailable = true
-                Log.e("!", "!!!!!!!!!!connect")
                 looper.post {
-                    setUpAll()
+                    try {
+                        setUpAll()
+                    } catch (ex: Exception) {
+                        Log.e(TAG, "onAvailable: unexpected exception")
+                    }
                 }
             }
 
             override fun onLost(network: Network) {
                 super.onLost(network)
                 internetAvailable = false
-                Log.e("!", "!!!!!!!!!!lost")
                 looper.post {
-                    changeInternetErrorVisibility(true)
+                    try {
+                        changeInternetErrorVisibility(true)
+                    } catch (ex: Exception) {
+                        Log.e(TAG, "onLost: Unexpected exception", )
+                    }
                 }
             }
 
@@ -140,6 +156,7 @@ class PokemonListFragment : Fragment() {
             binding.tcNoInternet.visibility = View.VISIBLE
             binding.ivNoInternet.visibility = View.VISIBLE
         } else {
+            changeProgressBarVisibility(false)
             binding.rvPokemons.visibility = View.VISIBLE
             binding.tcNoInternet.visibility = View.INVISIBLE
             binding.ivNoInternet.visibility = View.INVISIBLE

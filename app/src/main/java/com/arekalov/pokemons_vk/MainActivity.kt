@@ -13,11 +13,10 @@ import com.arekalov.pokemons_vk.di.DaggerAppComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var repository: PokemonRepository
+    internal lateinit var appComponent : AppComponent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DaggerAppComponent.create().inject(this)
+        appComponent = DaggerAppComponent.create()
     }
 }
