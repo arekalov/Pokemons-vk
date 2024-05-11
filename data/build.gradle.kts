@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    id("kotlin-kapt")
     alias(libs.plugins.jetbrains.kotlin.jvm)
 }
 
@@ -18,4 +19,8 @@ dependencies {
 
 //    paging
     implementation(libs.androidx.paging.common.ktx)
+
+//    dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger)
 }

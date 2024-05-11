@@ -1,8 +1,9 @@
 package com.arekalov.data.api
 
 import com.arekalov.data.Status
+import javax.inject.Inject
 
-class PokemonRepository(
+class PokemonRepository @Inject constructor(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource,
     val pokemonPagingRemoteDataSource: PokemonPagingRemoteDataSource
 ) {

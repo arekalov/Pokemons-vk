@@ -5,9 +5,10 @@ import androidx.paging.PagingState
 import com.arekalov.data.Status
 import com.arekalov.data.model.Pokemon
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 import kotlin.math.max
 
-class PokemonPagingRemoteDataSource(
+class PokemonPagingRemoteDataSource @Inject constructor(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource
 ) : PagingSource<Int, Status>() {
     companion object {
