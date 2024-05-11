@@ -1,4 +1,4 @@
-package com.arekalov.data.api
+package com.arekalov.data
 
 sealed class Status {
     data class OK<T>(val data: T) : Status()
