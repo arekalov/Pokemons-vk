@@ -17,7 +17,7 @@ class PokemonListViewModel(private val repository: PokemonRepository) : ViewMode
     companion object {
         private const val ITEMS_PER_PAGE = 20
     }
-    private var productsLiveData = MutableLiveData<PagingData<Status>>()
+    private var pokemonsLiveData = MutableLiveData<PagingData<Status>>()
     private val response = Pager(
         config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
         pagingSourceFactory = { repository.pokemonPagingRemoteDataSource }
@@ -26,7 +26,7 @@ class PokemonListViewModel(private val repository: PokemonRepository) : ViewMode
 
     fun getPokemons(): LiveData<PagingData<Status>>? {
         try {
-            productsLiveData.value = response.value
+            pokemonsLiveData.value = response.value
             return response
         } catch (ex: Exception) {
             Log.e("error", "getProducts: response is null")

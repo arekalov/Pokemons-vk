@@ -29,7 +29,6 @@ class PokemonPagingRemoteDataSource @Inject constructor(
         try {
             val loadSize = minOf(params.loadSize, PAGE_SIZE)
             val loaded = pokemonRemoteDataSource.getPokemonList(PAGE_SIZE, start)
-            println("Start:$start loadsize: $loadSize params.loadsize: ${params.loadSize}")
             return LoadResult.Page(
                 data = loaded,
                 prevKey = when (start) {

@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arekalov.data.Status
 import com.arekalov.data.model.Pokemon
 import com.arekalov.pokemons_vk.MainActivity
-import com.arekalov.pokemons_vk.R
 import com.arekalov.pokemons_vk.adapters.PokemonListAdapter
 import com.arekalov.pokemons_vk.adapters.PokemonLoadsAdapter
 import com.arekalov.pokemons_vk.databinding.FragmentPokemonListBinding
@@ -42,11 +42,13 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        changeProgressBarVisibility(true)
         pokemonListViewModel.getPokemons()
         setAdapter()
-        observeProducts()
+        observePokemons()
         setOnClick()
     }
+
 
     private fun setOnClick() {
         pokemonListAdapter.onClick = {
@@ -69,11 +71,16 @@ class PokemonListFragment : Fragment() {
         }
     }
 
-    private fun observeProducts() {
-        viewLifecycleOwner.lifecycleScope.launch {
+    private fun observePokemons() {
+      viewLifecycleOwner.lifecycleScope.launch {
             try {
                 pokemonListViewModel.getPokemons()?.observe(viewLifecycleOwner) {
                     pokemonListAdapter.submitData(lifecycle, it)
+                }
+                pokemonListAdapter.addLoadStateListener {
+                    if (it.refresh is LoadState.NotLoading && pokemonListAdapter.itemCount > 0) {
+                        changeProgressBarVisibility(false)
+                    }
                 }
             } catch (ex: Throwable) {
                 Log.e("error", "observeProducts: ${ex.message}")
@@ -81,4 +88,8 @@ class PokemonListFragment : Fragment() {
         }
     }
 
+    private fun changeProgressBarVisibility(isVisible: Boolean) {
+        if (isVisible) binding.progressBar.visibility = View.VISIBLE
+        else binding.progressBar.visibility = View.INVISIBLE
+    }
 }
