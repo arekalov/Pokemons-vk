@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/iv_no_internet"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
         android:contentDescription="@string/error"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_internet_error"
@@ -29,10 +29,10 @@
         android:id="@+id/tc_no_internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:fontFamily="@font/allerta"
         android:text="@string/networkError"
-        android:textSize="16sp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
