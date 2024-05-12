@@ -2,17 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
-buildscript {
-    repositories {
-        google()
-    }
-    dependencies {
-        val nav_version = "2.7.7"
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
-    }
-}
+
 
 android {
     namespace = "com.arekalov.pokemons_vk"
@@ -37,7 +30,10 @@ android {
             )
         }
     }
-    
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,10 +46,11 @@ android {
 dependencies {
 //    retrofit
     implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
 //    dagger
     implementation(libs.dagger)
-    kapt(libs.dagger)
+    kapt(libs.dagger.compiler)
 
 //    glide
     implementation(libs.glide)
@@ -61,9 +58,17 @@ dependencies {
 //    coroutines
     implementation(libs.kotlinx.coroutines.android)
 
+//    navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
+//    ssp, sdp
+    implementation(libs.ssp.android)
+    implementation(libs.sdp.android)
 
-
+//    paging
+    implementation(libs.androidx.paging.common.ktx)
+    implementation(libs.androidx.paging.runtime)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -73,4 +78,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(project(":data"))
 }

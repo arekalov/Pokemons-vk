@@ -1,12 +1,13 @@
 package com.arekalov.data.api
 
 import com.arekalov.data.Status
+import javax.inject.Inject
 
-class PokemonRepository(
+class PokemonRepository @Inject constructor(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource,
-    private val pokemonPagingRemoteDataSource: PokemonPagingRemoteDataSource
+    val pokemonPagingRemoteDataSource: PokemonPagingRemoteDataSource
 ) {
-        suspend fun getPokemonList(limit: Int, offset: Int): Status {
+    suspend fun getPokemonList(limit: Int, offset: Int): List<Status> {
         return pokemonRemoteDataSource.getPokemonList(limit, offset)
     }
 

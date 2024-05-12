@@ -1,9 +1,10 @@
 package com.arekalov.data.api
 
 import com.arekalov.data.Status
+import javax.inject.Inject
 
 
-class PokemonRemoteDataSource(
+class PokemonRemoteDataSource @Inject constructor(
     private val pokemonApi: PokemonApi
 ) {
     suspend fun getPokemon(name: String): Status {
